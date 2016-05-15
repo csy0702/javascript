@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>4_全局对象_保存所有的函数引用</title>
+	</head>
+	<body>
+		<script>
+			//window为全局对象，保存了所有函数的引用
+			
+			function show1(){
+				alert('a');
+			}
+			function show2(){
+				alert('b');
+			}
+			
+			window['show1']();
+			window['show2']();
+			
+			
+		</script>
+	</body>
+</html>

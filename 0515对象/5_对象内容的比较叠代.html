@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>5_对象内容的比较_叠代</title>
+	</head>
+	<body>
+		<script>
+			Object.prototype.equals=function (obj){
+				var result=false;
+				if(!obj){
+					return result;
+				}
+				//先将obj对象和this对象中的值一一比较
+				for(var key in obj){
+					if(!obj[key] || !this[key]  || obj[key]!=this[key]){
+						return result;
+					}//判断obj对象的键是否为空     this对象的键是否为空       obj的键和this对象的键是不是不相等
+					
+				}
+				//再将this对象和obj对象中的值一一比较
+				for(var key in this){
+					if(!obj[key] || !this[key]  || obj[key]!=this[key]){
+						return result;
+					}
+					
+				}
+				//因为如果单方面比较一次，可能会出现a中只有两个属性，而b中有三个属性，sex的属性没有作比较，就判定a和b是相等的，所以要做两次比较
+				result=true;
+				return result;
+			}
+			
+			var a={name:'smith',age:20,};
+			var b={name:'smith',age:20,sex:"male"};
+			
+			document.write(  (a==b)  +"<br />");  //  ==  比较的是地址
+			
+			document.write(  a.equals(b) +"<br />" );//   equals比较的是值
+				//	  a为this当前的对象         b为obj对象 
+			//实现克隆操作
+			
+			Object.prototype.clone=function(){
+				var newobj={};
+				for(var key in this){
+					newobj[key]=this[key];//值和值对应，键和键对应
+					//把当前的键里面的值赋给newobj，不断循环    即this[0]=smith   this[1]=20  this[3]=male
+					
+				}
+				return newobj;
+				
+			}
+			//如果是赋值的话，则都会指向同一个地址空间，只要改变地址空间中的值，那么两个值都会改变
+			//如果是克隆，那么两个变量指向的是不同的空间，克隆的那个会另外开辟一个空间出来，当改变原始的那个值是并不影响克隆的那个值
+			var newA=a.clone();
+			newA.name='tom';//重新赋值
+			document.write(a.name +a.age+"<br/>");
+			document.write(newA.name +"<br/>");
+			
+			
+		</script>
+	</body>
+</html>
