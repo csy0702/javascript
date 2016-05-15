@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<pre>
+			5．有限自动机的运行。（1人）
+				编制程序，使得能够识别一个输入串是否为一个有效的标识符，并给出动态的效果演示。
+				标识符：第一个字母必须是字母，下划线，或美元符号$
+				
+				1.以字母或下划线开始，
+				
+				
+			编译原理-有限自动机的运行，/程序功能：
+			
+			 利用状态表和有限自动机的运行原理，识别一个输入串是否为一个有效的无符号定点实数。
+		</pre>
+		<script>
+			function biaoShiFu(){
+				
+				var a=arguments[0];
+				var arr=a.split("");
+//				for(var i=0;i<arr.length;i++){
+//					document.write(arr[i]+"&nbsp;&nbsp;");
+//				}
+				
+				if(a==null ||  a==""){
+					alert("您没有输入标识符，请输入标识符");
+				}else
+				if(arr[0]=='_' || arr[0]<='Z'&&arr[0]>='A' || arr[0]<='z'&&arr[0]>='a'||  arr[0]=='$'){
+					alert("您输入的是一个有效的标识符")
+					document.write("您输入的标识符为"+a);
+					
+				}else
+				if(arr[0]>=0&&arr[0]<=9){
+					alert("您输入的是第一个字符不能为数字,请重新输入");
+				}
+				
+
+			}			
+			biaoShiFu(prompt("请输入一个标识符"));
+			
+		</script>
+		
+		
+	</body>
+</html>
