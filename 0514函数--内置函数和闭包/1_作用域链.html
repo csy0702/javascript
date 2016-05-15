@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1_作用域链</title>
+	</head>
+	<body>
+		<pre>
+			1.闭包作用域：函数作用域   全局作用域   eval作用域     作用域一直往上找
+			    自己有就在里面找，没有的话就往上一级找  作用域链一直往上走
+			    
+			 2.在子函数中可以访问的变量
+			 闭包只保存最后一次值
+		</pre>
+		<script>
+			var a=1;
+			function f(){
+				var b=1;
+				return a;
+			}
+			
+			document.write(f());  //输出1   因为该函数返回是a   虽然函数中没有a，但是可以在上一级找，就是往上找，全局变量定义了一个a，就输出a
+			
+//			function f(){
+//				var b=1;
+//				var a=10;
+//				return a;
+//			}
+//			
+//			document.write(f());  //输出10
+//			
+//			function f(){
+//				var b=2;
+//				function n(){
+//					var c=3;
+//					console.log(a+"\t"+b+"\t"+c);
+//				}
+//				n();
+//			}
+//			document.write(f());  //输出1  2  3
+//在函数中寻找变量，如果没有找到，就一直顺着这个作用域链往上找，知道找到为止。
+			
+		</script>
+	</body>
+</html>

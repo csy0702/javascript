@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>9_闭包的应用_字符串的封装</title>
+	</head>
+	<body>
+		<script>
+			var stringBuffer=(
+				function(){
+					var arr=[];
+					return{
+						value:function(){
+							return arr.join("");
+						},
+						append:function(val){
+							arr[arr.length]=val;
+						}
+					};
+				}
+			)();
+			
+			document.write("原始字符串为："+stringBuffer.value()+"<br />");//空行
+			stringBuffer.append("hello");
+			stringBuffer.append("csy");
+			
+			document.write("添加后的字符串为："+stringBuffer.value()+"<br />");//hellocsy
+			
+		</script>
+	</body>
+</html>

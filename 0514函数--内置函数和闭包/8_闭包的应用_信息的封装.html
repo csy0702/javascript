@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>8_闭包的应用_信息的封装</title>
+	</head>
+	<body>
+		<script>
+		var person=(
+			function(){
+				var name='';
+				var age=18;
+				return{
+					setName:function(n){
+						name=n;
+					},
+					getName:function(){
+						return name;
+					},
+					setAge:function(a){
+						if(a<18){
+							alert("年龄必须大于18");
+						}else{
+							age=a;
+						}
+					},
+					getAge:function(){
+						return age;
+					},
+					toString:function(){
+						return "姓名:"+name+"      年龄:"+age ;
+					}
+				};
+			}
+			
+		)();
+		person.setName('张三');
+		person.setAge(-20);
+		
+		document.write(person.getName()+"<br/>");
+		document.write(person.getAge()+"<br/>");
+		
+		document.write(person.toString()+"<br/>");
+		
+			
+		</script>
+	</body>
+</html>

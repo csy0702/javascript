@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>5_闭包的应用</title>
+	</head>
+	<body>
+		<script>
+			var arr=["apple","pear","banana"];
+			
+			
+			function f(){
+				var innerArray=new Array();
+				for(var i=0;i<innerArray.length;i++){
+					var item=arr[i];
+					innerArray[i]=(  function (item){
+									return function(){
+										document.write(item+"<br/>");
+									}
+			
+							})(item);
+						
+					}
+			
+				for(var i=0;i<innerArray.length;i++){
+					
+					innerArray[i]();
+						
+				}
+				return innerArray;
+			}
+				
+			var result=f();
+			document.write(result[0]()+result[1]()+result[2]())
+			
+			
+		</script>
+	</body>
+</html>

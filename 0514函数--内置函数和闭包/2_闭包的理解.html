@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2_闭包的理解</title>
+	</head>
+	<body>
+		<script>
+			//突破函数的生命周期，一般是函数运行完，里面的变量就会销毁，但是因为有了闭包，
+			//所以那个变量的以保存不被销毁，内部变量还可以引用
+			//子函数引用了一个外部函数的属性，这就叫闭包
+			
+			function f1(){
+				var a=1;
+				return function(){   //突破生命周期
+					return a;
+				}
+			}
+			
+			var r=f1();
+			document.write(  r()+"<br/>");
+			//函数一定要激活才有用
+			function greet(name){
+				return function(greeting){
+					return greeting+"name";
+				}
+			}
+			var r=greet("smith");  //得到的是一段返回的代码，返回的代码中没有关于name的变量，所以赋一个"smith"的值根本没用
+			document.write(  r("hello"));   //  对这段代码进行激活，传入的是greeting的值    ==>输出  helloname
+		</script>
+	</body>
+</html>

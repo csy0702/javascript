@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>3_闭包的应用_bug_保存现场</title>
+	</head>
+	<body>
+		<pre>
+			闭包保存现场三种方法：外部函数，内部函数，内部匿名函数
+		</pre>
+	<p>第一行</p>
+	<p>第二行</p>
+	<p>第三行</p>
+		<script>
+		/*
+		//需求：对三个p标签进行点击，每点击一次打印出来一次，进行计数
+		//错误情况：因为匿名函数没有被调用，所以它并没有保存当时的值
+			function add(nodes){
+				for(var i=0;i<nodes.length;i++){
+					var node=nodes[i];
+					node.onclick=function(){
+						alert(i+1);
+					};//不能保存现场，总是输出的是最后一个值
+				}
+			}
+			var nodes=document.getElementsByTagName("p");
+			add(nodes);
+		
+		*/
+		
+		/*
+		//解决方案一：使用嵌套函数
+		
+		function add(nodes){
+				function invoke(i){
+					return function(){		//内部函数    闭包
+						alert(i+1);
+					}
+					
+				}
+				for(var i=0;i<nodes.length;i++){
+					var node=nodes[i];
+					node.onclick=invoke(i);
+					
+				}
+			}
+			var nodes=document.getElementsByTagName("p");
+			add(nodes);
+		*/
+		//解决方案二：内部匿名函数 
+		
+		function add(nodes){
+				
+				for(var i=0;i<nodes.length;i++){
+					var node=nodes[i];
+					node.onclick=function(i){
+									return function(){		//匿名函数   闭包
+											alert(i+1);
+									}
+					
+								}
+					
+				}
+			}
+			var nodes=document.getElementsByTagName("p");
+			add(nodes);
+		</script>
+	</body>
+</html>

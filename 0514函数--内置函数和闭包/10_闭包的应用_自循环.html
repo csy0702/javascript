@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>10_闭包的应用_自循环</title>
+	</head>
+	<body>
+		<script>
+			
+			function selfNext( arr){
+				var index=0;
+				return function(){
+					return arr[index++];
+				}
+			}
+			var mynext=selfNext([1,2,3,4]);
+			//用while循环
+			while( a=mynext()  ){
+				document.write(  a+"<br/>");
+			}
+			//写一次document输出一个
+			document.write(  mynext()+"<br/>");   //()指的是一个函数
+			document.write(  mynext()+"<br/>");
+			document.write(  mynext()+"<br/>");
+		</script>
+	</body>
+</html>

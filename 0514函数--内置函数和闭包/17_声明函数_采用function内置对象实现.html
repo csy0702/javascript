@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>16_声明函数_采用function内置对象实现</title>
+	</head>
+	<body>
+		<pre>
+			1.js引擎中有一个内置对象 Function  ,也可以创建涵数
+			2.Function（形参列表,实现的功能代码）   --》形参都可以当成一个字符串
+		</pre>
+		<script>
+			var add=new Function("a","b","document.write(a+b+'<br/>')");
+			
+			add(1,2);   //==>输出3
+			
+			function add1(a,b){
+				document.write(a+b+'<br/>');
+				
+			}
+			
+			add1(2,2);
+		</script>
+	</body>
+</html>

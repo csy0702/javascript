@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>6_闭包的应用_封装</title>
+	</head>
+	<body>
+		<script>
+			var setAge,getAge;//声明两个全局变量
+			(
+				function(){
+					var age=0;//在一个函数的内部定义的属性在函数外无法直接访问，
+					setAge=	function(a){  //这个全局变量引用一个闭包，在闭包中去访问这个函数的属性
+						age=a;
+					}
+					getAge=function(a){
+						return age;
+					}
+				}
+			)();
+			
+			document.write(  getAge()+"<br />");
+			
+			setAge(20);
+			
+			document.write(  getAge());
+			
+			
+		</script>
+	</body>
+</html>
