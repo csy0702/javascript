@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>12_继承了Object的toString()</title>
+	</head>
+	<body>
+		<script>
+			var num=new Number(123);
+			document.write(  num.toString()+"  "+(typeof num) +"<br/>");
+			document.write(  (typeof 123)+"<br/>")
+			//valueof()返回指定对象的原始值。
+			document.write(   num.valueOf()+"<br/>");
+			
+			//hasOwnProperty()判定一个对象中是否有某个属性
+			var car={
+				color:'red',
+				run:function(){  alert('run');}
+			}
+			document.write(  car.hasOwnProperty('color')+"    "+car.hasOwnProperty('logo'));
+		</script>
+	</body>
+</html>

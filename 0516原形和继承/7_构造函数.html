@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>7_构造函数</title>
+	</head>
+	<body>
+		<script>
+		/*
+		 构造函数的调用 ：   new  构造函数（） 返回一个对象  （代码）
+		 函数的调用 ：    函数（）   返回一个值
+		 
+		 表示一个函数用小写开头，一个对象用大写开头
+		 构造函数：就是用来初始一个对象的成员属性的值的函数    把它当成一个对象来看    此时调用的时候要用new来创建
+		 它就是一个函数，它的功能是赋值
+		 声明任意的对象，它的成员可以任意添加      对象.成员名
+		 函数表示一种功能   ，     
+		 */
+		function Person(name,age){
+			//this指的是当前的对象name     name指的是形参的name
+			//最开始this.name   是空值     接着通过这句代码将name的实参值传到this.name中去
+			this.name=name;
+			this.age=age;
+			
+			//return {name,age};
+			
+		}
+		
+		//var zs=Person('张三',20);
+		var zs=new Person('张三',20);
+		document.write(  zs+"<br/>");
+		document.write(zs.name+"   "+zs.age+"<br/>");
+		document.write(  name+"   "+  age+"<br/>");
+		
+		</script>
+		
+	</body>
+</html>

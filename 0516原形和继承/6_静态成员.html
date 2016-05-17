@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>6_静态成员</title>
+	</head>
+	<body>
+		<script>
+		/*
+			静态成员不是在prototype原形中，随时可以通过类名调，
+			
+			 调用 原形必须创建一个新的对象，才能调用
+			
+		*/
+		Object.sayHi=function(){
+			alert('hello');
+		}
+		
+		Object.sayHi();
+		
+		Object.prototype.sayBye()=function(){
+			alert('hello');
+		}
+		var obj=new Object();
+		obj.sayBye();
+		</script>
+	</body>
+</html>

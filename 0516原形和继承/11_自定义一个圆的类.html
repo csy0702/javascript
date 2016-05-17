@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>11_自定义一个圆的类</title>
+	</head>
+	<body>
+		<script>
+			//定义一个Circle类，有一个半径的属性，和两个方法（计算周长，面积）
+			
+			function Circle( r){
+				this.r=r;
+			}
+			//定义一个静态的
+			Circle.PI=3.14; 
+			Circle.prototype={
+				perimeter:function(){
+					return 2*this.r*Circle.PI;
+				},
+				area:function(){
+					return this.r*this.r*Circle.PI;
+				}
+				
+			}
+			
+			var c=new Circle(4);
+			document.write("半径为"+c.r+"  周长为： "+c.perimeter()+"<br/>");
+			document.write("半径为"+c.r+"  面积为： "+c.area()+"<br/>");
+			
+		</script>
+	</body>
+</html>

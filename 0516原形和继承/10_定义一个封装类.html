@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>10_定义一个封装类</title>
+	</head>
+	<body>
+		<script>
+			function Person(name,age){
+			
+				this.name=name;
+				this.age=age;
+
+			}
+			//内置函数(Array,Object)可以通过prototype来扩展这些功能，这样它们下面的对象就都有这些功能了
+			//对Person对象的原形自定义功能     自定义类也可以通过使用prototype来扩展
+			
+			//因为这里是用一个对象{}来创建的，所以下面sayBye ，  eat就不会对这个原形进行覆盖，只会进行重写和添加操作
+			Person.prototype={
+				sayBye:function(name){
+					document.write(this.name+"  say bye to "+name+"<br/>");
+					
+				},
+				eat:function(foods){
+					document.write( this.name+"  eat  "+foods+"<br/>");
+				}
+			};
+			var p1=new Person("张三",20);
+			
+				p1.sayBye("smith");
+			
+			//功能的重写
+			Person.prototype.sayBye=function(name){
+				document.write(this.name+"  say bye to "+name+"<br/>");
+			}
+			//功能的添加
+			Person.prototype.eat=function(foods){
+				
+				document.write( this.name+"  eat  "+foods+"<br/>");
+			}
+			
+			p1.sayBye("tom");
+			p1.eat("apple");
+			
+			
+		</script>
+	</body>
+</html>

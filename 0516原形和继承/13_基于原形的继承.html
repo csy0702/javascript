@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>13_基于原形的继承</title>
+	</head>
+	<body>
+		<script>
+			//js通过原形来实现封装，继承，多态，
+			/*
+			 原型（prototype）链
+			 如果b.prototype=new c()   c就是b的父类，即b就有c中的成员
+			 如果a.prototype=new b()   b就是a的父类，即a就有b,c中的成员
+			
+			 */
+			//定义父类
+			function Animal(){}
+			
+			//定义Animal的原形，通过{}对象来同时创建多个属性函数
+				Animal.prototype={
+					group:"动物",
+					gender:'',
+					eat:function(){
+						return "进食";
+					},
+					sleep:function(){
+						return "睡觉";
+					},
+					//继承了Object的toString方法，    来按照我自己的输出想法来写
+					toString:function(){
+						return this.group+"  "+this.gender;
+					}
+				}
+			
+			
+			//定义子类
+			
+			function Bird(){}
+			//实现继承
+			Bird.prototype=new Animal();//一定要用new来创建   最关键    
+			//父类来重写子类的prototype时，子类的constructor不会被重写  Object的构造器
+			
+			//实现对功能的添加操作
+			Bird.prototype.fly=function(){
+				return "飞行";
+			}
+			
+			//创建一只鸟的对象
+			var b1=new Bird();
+			document.write( b1.toString()+"   "+b1.eat()+"   "+b1.sleep()+"   "+b1.fly()+"<br/>" );
+			
+			//new b1.constructor();   =>这样创建的对象不是Bird（）而是Object
+			document.write( b1.constructor+"<br/>"  );
+			var newbird=new b1.constructor();
+			document.write(  (newbird instanceof Bird )+"<br/>");
+					//instanceof 返回一个 Boolean值      指定newBird对象是否是Bird特定类的一个实例。
+
+			
+			//让  b1能正确反映自己的构造方法   解决方案
+			Bird.prototype.constructor=Bird;  //进行强制定义它的对象为Bird
+			document.write( b1.constructor+"<br/>" );
+			var newbird2=new b1.constructor();
+			document.write(  (newbird2 instanceof Bird )+"<br/>");
+			
+		</script>
+	</body>
+</html>
