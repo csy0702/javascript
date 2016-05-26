@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>6_封装继承</title>
+	</head>
+	<body>
+	
+		<script>
+			//代码顺序问题
+		
+			function Shape(){}
+			Shape.prototype.name='形状';
+			Shape.prototype.toString=function(){  return  this.name; };
+			
+			//继承代码
+			function extend(Child,Perent){
+				var F=function(){};//空的临时构造器,这样就可以避免改变原型链中的属性
+				F.prototype=Perent.prototype;//  关键    把父类原型赋给子类
+				Child.prototype=new F();//F为临时构造器，此时new  F 时，是重新创建了F的原型，所以修改name属性时是修改F 中的，对原型链没有什么影响
+				Child.prototype.constructor=Child;
+			}
+			function TwoShape(){}
+			extend(TwoShape,Shape);    //继承extend（子类名，父类名）
+			TwoShape.prototype.name='2d形状';
+			
+			function Trangle(bottom,height){
+				this.bottom=bottom;
+				this.height=height;
+			}
+			extend(Trangle,TwoShape);
+			Trangle.prototype.name='3角形';
+			Trangle.prototype.getArea=function(){
+				return this.bottom*this.height/2;
+				
+			}
+			
+			var t=new Trangle(3,4);
+			document.write(  t.getArea()+"<br/>"+  t.toString()+t.name  );
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>5_使用临时构造器来解决两个问题</title>
+	</head>
+	<body>
+		<script>
+			function Shape(){}
+			
+			Shape.prototype.name='形状';
+			Shape.prototype.toString=function(){  return  this.name; };
+			
+			function TwoShape(){}
+			//创建一个临时构造器，这样就可以避免改变原型链中的属性
+			var F=function(){};
+			F.prototype=Shape.prototype;//  关键    把父类原型赋给子类
+			TwoShape.prototype=new F();
+			//F为临时构造器，此时new  F 时，是重新创建了F的原型，所以修改name属性时是修改F 中的，对原型链没有什么影响
+			TwoShape.prototype.constructor=TwoShape;
+			TwoShape.prototype.name='2d形状';
+			
+			function Trangle(bottom,height){
+				this.bottom=bottom;
+				this.height=height;
+			}
+			var G=function(){};
+			G.prototype=Trangle.prototype;//  关键    把父类原型赋给子类
+			Trangle.prototype=new G();
+			Trangle.prototype.constructor=Trangle;
+			Trangle.prototype.name='3角形';
+			Trangle.prototype.getArea=function(){
+				return this.bottom*this.height/2;
+				
+			}
+			
+			var a=new Trangle(3,4);
+			document.write(a.getArea() +"<br/>" );
+			document.write( a.name +"<br/>" );
+			
+			var b=new TwoShape();
+			document.write( b.name +"<br/>" );
+			
+			var c=new Shape();
+			document.write( c.name +"<br/>" );//name为直接赋值的属性，不是函数，所以调用时不需要加()
+		</script>
+	</body>
+</html>

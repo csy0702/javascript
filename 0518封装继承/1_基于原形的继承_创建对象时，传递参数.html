@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1_基于原形的继承_创建对象时，传递参数.html</title>
+	</head>
+	<body>
+		<script>
+			//定义父类
+			function Animal(group,gender){
+				//定义属性，这样可以完成对对象的初始化操作
+				this.group=group;
+				this.gender=gender;
+				
+			}
+			Animal.prototype.showInfo=function(){
+				document.write("类别:  "+this.group+" <br/>  性别:  "+this.gender+"<br/>");
+				
+			}
+			//定义子类
+			function Bird(  group,gender){
+				//为了完成使用参数来创建  Animal对象，可以使用call（）函数
+				//call函数语法：   Object.call(要调用构造函数的对象，[实参值1，实参值2。。。])
+				Animal.call( this,group,gender );
+				//等价：Animal.apply( this,arguments );
+			}
+			Bird.prototype=new Animal();
+			Bird.prototype.constructor=Bird;
+			
+			var b1=new Bird("鸟类","雌");
+			b1.showInfo();
+			
+		</script>
+	</body>
+</html>

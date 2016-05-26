@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2_基于原形的继承_创建对象时，传递参数_案例</title>
+	</head>
+	<body>
+		<script>
+		//js通过原形继承，写在函数里面的就变成了私有的了，继承不了，声明在函数中的子函数在外面调用不到
+		//定义父类
+			function Person(name,sal){
+				this.name=name;
+				this.sal=sal;
+				
+			}
+			//定义原形链     prototype相当于一个数组，里面可以存很多个函数
+			Person.prototype={
+				toString:function(){
+					return "姓名：   "+this.name+"   工资：  "+this.sal+"<br/>";
+					
+				},
+				work:function(){
+					docunment.write(this.name+"    开始工作"+"<br/>");
+					
+				}
+			}
+			//定义子类Emp
+			function Emp(name,sal,no){
+				Person.call(this,name,sal);//为了完成使用参数来创建 Person对象
+				this.no=no;    //最关键     当再对子类多添加一个参数时，
+			}
+			Emp.prototype=new Person();
+			Emp.prototype.constructor=Emp;//每次都要用构造器把实例赋给它
+			
+			Emp.prototype.toString=function(){
+				return "姓名 ：    "+this.name+"   工资 ：    "+this.sal+"    补助：    "+this.no+"<br/>";
+			}
+			
+			var emp=new Emp("张三",2000,1);
+			document.write(  emp.toString());
+			
+			//定义子类Manager
+			function Manager(name,sal,allowance){
+				Person.call(this,name,sal);
+				this.allowance=allowance;   //每多添加一个参数，就要用这句代码实现
+			}
+			Manager.prototype=new Person();
+			Manager.prototype.constructor=Manager;
+			//constructor构造器
+			Manager.prototype.toString=function(){
+				return "姓名:   "+this.name+"    工资:   "+this.sal+"    补助:   "+this.allowance+"<br/>";
+			}
+			
+			var manager= new Manager("李四",4000,1000);
+			document.write(  manager.toString());
+		</script>
+	</body>
+</html>
