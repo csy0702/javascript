@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="mydiv">
+			你吃不吃饼干
+			<p>吃了你就是我老婆</p>
+			<div>不吃就是我女朋友</div>
+			<h2>不吃算了</h2>
+		</div>
+		<script>
+			var mydiv=document.getElementById("mydiv");
+			var node=mydiv.childNodes;
+			for(var i=0;i<node.length;i++){
+				console.log("第"+(i+1)+"个节点<br/>节点名：   "+node[i].nodeName+"<br/>节点类型：  "+node[i].nodeType+"<br/>节点值：  "+node[i].nodeValue+"<br/>");
+			}
+		</script>
+	</body>
+</html>

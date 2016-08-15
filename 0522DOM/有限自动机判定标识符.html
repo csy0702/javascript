@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>有限自动机判定标识符</title>
+	</head>
+	<style>
+		*{
+			margin: 0px auto;
+			padding: 0px;
+		}
+		body{
+			background: url(z.gif) no-repeat left bottom,url(q.gif) no-repeat top left,url(w.gif) no-repeat right bottom ,url(d.gif) no-repeat right top ;
+			
+			/*background: url(q2.gif) no-repeat;
+			background-size: cover;*/
+		}
+		div{
+			margin-top: 100px;
+			margin-left: 380px;
+			width:600px;
+			height: 400px;
+			background: antiquewhite;
+			border-radius: 10px;
+			border: 2px dashed burlywood;
+		}
+		#inputText{
+			resize: none;
+			margin: 20px 0px 20px 60px;
+			line-height: 50px;
+			width: 480px;
+			height: 50px;
+			border-radius: 10px;
+			font-size: 30px;
+			border: 2px dashed burlywood;
+			color:mediumpurple;
+			font-weight: bolder;
+		}
+		#outputText{
+			resize: none;
+			margin: 20px 0px 20px 60px;
+			border: 2px dashed burlywood;
+			width: 480px;
+			height: 200px;
+			border-radius: 10px;
+			font-size: 30px;
+			color:mediumpurple;
+			font-weight: bolder;
+		}
+		#panding{
+			border: none;
+			width: 100px;
+			height: 40px;
+			font-size: 30px;
+			margin-left: 240px;
+			background: pink;
+			border-radius: 10px;
+			border: 2px dashed burlywood;
+		}
+		
+	</style>
+	<body>
+		
+			<!--5．有限自动机的运行。（1人）
+				
+				编制程序，使得能够识别一个输入串是否为一个有效的标识符，并给出动态的效果演示。
+				
+			-->
+			<div>
+				<textarea id="inputText"></textarea><br />
+				<input type="button" value="判定" onclick="biaoShiFu()" id="panding" />
+				<textarea id="outputText" ></textarea>
+			</div>
+				
+				
+			
+				
+
+		<script>
+	
+			function biaoShiFu(a){
+				
+					//定义变量a获取到inputText   中的值
+					//定义变量b获取到outputText这个元素节点
+					var a=document.getElementById("inputText").value;
+					var b=document.getElementById("outputText");
+					
+					//将传入的字符串打散为数组形式存放     相当于    "abc"   =>  ["a","b","c"]
+					var arr=a.split("");
+					
+					
+					//判定是否输入了字符串
+					if(a==null ||  a==""){
+						b.innerHTML="您没有输入标识符。";
+						return;
+					}
+					//判定输入的字符串的长度是否在 8个以内(在这里我们规定输入八个以内的字符)
+					//定义一个数组存放保留字
+					var blz=["auto","break","case","char","const","continue","default","do","double","else","enum","extern","float","for","goto","if","int","long","register","return","short","signed","sizeof","static","struct","switch","typedef","unsigned","union","void","volatile","while"];
+					
+					//定义一个数组存放符号
+					var fh=["!","~","@","#","%","^","&","*","(",")","-","_","=","+","{","}","[","]","<",">"];
+					
+					if(a.length>0&&a.length<=8){
+						
+						
+						for(var i=0;i<blz.length;i++){
+							
+							if(a==blz[i]){
+								b.innerHTML='您输入的是一个保留字'+"\n"+"您输入的保留字为:"+a;
+								return ;
+							}
+						}
+						
+						for(var i=0;i<fh.length;i++){
+								
+							if(arr[0]==fh[i]){
+									b.innerHTML="您输入的是第一个字符不能为符号"+"\n"+"你输入的符号为："+arr[0];
+							}
+							
+						}
+							
+						//判定第一个字符是否为     _ 或者  A-Z   a-z   $	
+						if(arr[0]=='_' || arr[0]<='Z'&&arr[0]>='A' || arr[0]<='z'&&arr[0]>='a'||  arr[0]=='$'){
+							
+							//判定输入的字符串中是否有空格
+
+							if(a.indexOf(" ") == -1){
+								//判定接下来的字符是否由英文字母，下划线，数字，$组成
+								for(var i=1;i<arr.length;i++){
+									if(arr[i]=='_' || arr[i]<='Z'&&arr[i]>='A' || arr[i]<='z'&&arr[i]>='a'||  arr[i]=='$'  || arr[i]>=0&&arr[i]<=9 ){
+								
+									b.innerHTML="您输入的是一个有效的标识符"+"\n"+"您输入的标识符为:"+a;
+
+									}
+								}
+							}else{
+										b.innerHTML="您输入的是一个无效的标识符"+"\n"+"您输入的字符串为:"+a;
+									}
+						
+						
+						}else if(arr[0]>=0&&arr[0]<=9){
+							b.innerHTML="您输入的是第一个字符不能为数字"+"\n"+"你输入的无效标识符为："+a;
+						}
+							
+						
+					}else{
+						b.innerHTML="请输入一个八位数以内的字符串";
+					}
+					
+					
+					
+			
+				}
+
+			
+		</script>
+		
+		
+	</body>
+</html>
