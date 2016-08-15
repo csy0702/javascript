@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>3_过滤</title>
+	</head>
+	<body>
+		<textarea cols="40" rows="10" id="first"></textarea><br />
+		<input type="button" value="过滤" onclick="filter()" /><br />
+		<textarea cols="40" rows="10" id="late"></textarea>
+		
+		<script>
+			//人是人他妈生的，妖是妖他妈生的，人妖是人妖他妈生的，你他妈有事谁生的
+			function filter(){
+				//获取文本域中的值
+				var str=document.getElementById("first").value;
+				//过滤    定义正则
+				//或者用    |        逻辑运算符的与      |
+				var reg=/他妈|人妖|你他妈/g;
+				
+				//把过滤后的文本复制给下面的文本域中
+				document.getElementById("late").value=str.replace(reg,function(s){
+					var result="";
+					for(var i=0;i<s.length;i++){
+						result+="*";
+					}
+					return result;
+				});
+			}
+		
+		</script>
+		
+	</body>
+</html>

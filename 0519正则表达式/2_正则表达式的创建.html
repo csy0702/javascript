@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2_正则表达式的创建</title>
+	</head>
+	<body>
+		<script>
+			
+			
+			var str="12ab25cd567e";
+			var reg=/b/;
+			console.log(reg.test(str));
+			
+			var reg1=/cd/;
+			console.log(str.search(reg1));
+			
+			
+			var reg2=/\d+/g;
+			console.log(str.match(reg2));
+			
+			//替换
+			var str1="aaa";
+			var reg3=/a/g;
+			console.log(str1.replace(reg3,"b"));
+		</script>
+	</body>
+</html>
