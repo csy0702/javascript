@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<textarea class="first"></textarea><br />
+		<input type="button" value="替换" onclick="filter()" /><br />
+		<textarea class="late"></textarea><br />
+		<script>
+			function filter(){
+				var str=document.getElementById("first").value;
+				var reg=/<[^>]+>/g;
+				document.getElementById("late").value=str.replace(reg,"");
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="qq"  />
+		<input type="button" value="查询" onclick="check()" />;
+		
+		<script>
+			function  check(){
+				var str=document.getElementById("qq").value;
+				var reg=/^[1-9]\d{4,10}$/;
+				if(reg.test(str)){
+					alert("是QQ号");
+				}else{
+					alert("不是QQ号");
+				}
+			}
+		</script>
+	</body>
+</html>
